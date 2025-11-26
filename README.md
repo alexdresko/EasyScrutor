@@ -7,7 +7,10 @@
 |-----------------|----------------|-------------|
 | Azure CI Pipelines  | All            |![](https://dev.azure.com/fsefacan/Scrutor.AspNetCore/_apis/build/status/sefacan.Scrutor.AspNetCore?branchName=master) |
 | Github Actions  | All            |![](https://github.com/sefacan/Scrutor.AspNetCore/workflows/.NET%20Core%20CI/badge.svg) |
-| Travis CI       | Linux  |![](https://travis-ci.com/sefacan/Scrutor.AspNetCore.svg?branch=master) |
+
+### Requirements
+
+- .NET 8.0 or .NET 9.0
 
 ## Installation
 

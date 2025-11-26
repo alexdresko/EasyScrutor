@@ -6,18 +6,19 @@
 trigger:
 - master
 
-variables:
-  netCoreSdkVersion: '3.1.101'
-
 jobs:
 - job: Linux
   pool:
-    vmImage: 'Ubuntu 16.04'
+    vmImage: 'ubuntu-latest'
   steps:
-  - task: DotNetCoreInstaller@0
+  - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
-      version: $(netCoreSdkVersion)
+      version: '8.0.x'
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '9.0.x'
   - script: dotnet build ./Scrutor.AspNetCore.sln
     displayName: 'dotnet build'
   - script: dotnet test ./Scrutor.AspNetCore.sln
@@ -27,16 +28,20 @@ jobs:
     condition: succeededOrFailed()
     inputs:
       testResultsFormat: VSTest
-      testResultsFiles: '**/*.trx' 
+      testResultsFiles: '**/*.trx'
 
 - job: macOS
   pool:
-    vmImage: 'macOS-10.13'
+    vmImage: 'macOS-latest'
   steps:
-  - task: DotNetCoreInstaller@0
+  - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
-      version: $(netCoreSdkVersion)
+      version: '8.0.x'
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '9.0.x'
   - script: dotnet build ./Scrutor.AspNetCore.sln
     displayName: 'dotnet build'
   - script: dotnet test ./Scrutor.AspNetCore.sln
@@ -46,16 +51,20 @@ jobs:
     condition: succeededOrFailed()
     inputs:
       testResultsFormat: VSTest
-      testResultsFiles: '**/*.trx' 
+      testResultsFiles: '**/*.trx'
 
 - job: Windows
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-latest'
   steps:
-  - task: DotNetCoreInstaller@0
+  - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
-      version: $(netCoreSdkVersion)
+      version: '8.0.x'
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '9.0.x'
   - script: dotnet build ./Scrutor.AspNetCore.sln
     displayName: 'dotnet build'
   - script: dotnet test ./Scrutor.AspNetCore.sln
