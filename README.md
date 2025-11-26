@@ -1,6 +1,6 @@
 ## Scrutor.AspNetCore
 
- ASP.NET Core [Scrutor](https://github.com/khellang/Scrutor) extension for automatic registration of classes inherited from IScopedLifetime, ISelfScopedLifetime, ITransientLifetime, ISelfTransientLifetime, ISingletonLifetime, ISelfSingletonLifetime
+ [Scrutor](https://github.com/khellang/Scrutor) extension for automatic registration of classes inherited from IScopedLifetime, ISelfScopedLifetime, ITransientLifetime, ISelfTransientLifetime, ISingletonLifetime, ISelfSingletonLifetime. Works with any .NET application including web apps, console apps, and worker services.
 
 ### Build Status
 | Build server    | Platform       | Status      |
@@ -30,19 +30,83 @@ dotnet add package Scrutor.AspNetCore
 
 ## Usage
 
+### Minimal API / Web Application (Recommended)
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// For web apps with HTTP context support
+builder.AddAdvancedDependencyInjectionForWeb();
+
+var app = builder.Build();
+
+// Initialize ServiceLocator (optional, for static access)
+app.UseAdvancedDependencyInjection();
+
+app.Run();
+```
+
+### Console Application / Worker Service
+
+```csharp
+var builder = Host.CreateApplicationBuilder(args);
+
+// For non-web apps
+builder.AddAdvancedDependencyInjection();
+
+var host = builder.Build();
+
+// Initialize ServiceLocator (optional, for static access)
+host.UseAdvancedDependencyInjection();
+
+host.Run();
+```
+
+### Traditional Startup Class Pattern
+
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-    //add to the end of the method
-    services.AddAdvancedDependencyInjection();
+    // For web apps
+    services.AddAdvancedDependencyInjectionForWeb();
+    
+    // Or for non-web apps
+    // services.AddAdvancedDependencyInjection();
 }
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    //add to the end of the method
+    // Initialize ServiceLocator (optional)
     app.UseAdvancedDependencyInjection();
 }
+```
 
-//usage without constructor classes
+### Using ServiceLocator (Optional)
+
+```csharp
+// Access services without constructor injection
 var service = ServiceLocator.Context.GetService<MyClass>();
 ```
+
+## API Reference
+
+### Service Collection Extensions
+
+| Method | Description |
+|--------|-------------|
+| `AddAdvancedDependencyInjection()` | Core registration for any .NET app |
+| `AddAdvancedDependencyInjectionForWeb()` | Includes HttpContextAccessor and ActionContextAccessor |
+
+### Host Builder Extensions
+
+| Method | Description |
+|--------|-------------|
+| `builder.AddAdvancedDependencyInjection()` | For `IHostApplicationBuilder` (console/worker) |
+| `builder.AddAdvancedDependencyInjectionForWeb()` | For `WebApplicationBuilder` (web apps) |
+
+### Application/Host Extensions
+
+| Method | Description |
+|--------|-------------|
+| `app.UseAdvancedDependencyInjection()` | Initialize ServiceLocator for web apps |
+| `host.UseAdvancedDependencyInjection()` | Initialize ServiceLocator for non-web apps |
