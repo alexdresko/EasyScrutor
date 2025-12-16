@@ -62,7 +62,6 @@ public class AdvancedDependencyInjectionTests {
         // Act
         services.AddAdvancedDependencyInjection();
         services.AddAdvancedDependencyInjection();
-        var serviceProvider = services.BuildServiceProvider();
 
         // Assert - Should only have one registration due to Skip strategy
         var singletonServices = services.Where(s => s.ServiceType == typeof(ISingletonService)).ToList();
