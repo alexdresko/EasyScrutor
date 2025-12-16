@@ -24,6 +24,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./EasyScrutor.sln
 
+    - name: Verify code formatting
+      run: dotnet format ./EasyScrutor.sln --verify-no-changes --verbosity diagnostic
+
     - name: Build
       run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
 
