@@ -6,8 +6,7 @@ namespace BlazorServerExample.Services;
 /// Implements counter functionality with singleton lifetime.
 /// Auto-registered as Singleton using EasyScrutor.
 /// </summary>
-public class CounterService : ICounterService, ISingletonLifetime
-{
+public class CounterService : ICounterService, ISingletonLifetime {
     /// <summary>
     /// The internal counter value.
     /// </summary>

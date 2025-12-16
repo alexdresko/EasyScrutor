@@ -12,8 +12,7 @@ builder.Services.AddAdvancedDependencyInjection();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.MapOpenApi();
 }
 
@@ -27,9 +26,8 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+app.MapGet("/weatherforecast", () => {
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -42,10 +40,8 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 
 // Example endpoint demonstrating auto-registered services
-app.MapGet("/greeting/{name}", (string name, IGreetingService greetingService, IDateTimeService dateTimeService) =>
-{
-    return new
-    {
+app.MapGet("/greeting/{name}", (string name, IGreetingService greetingService, IDateTimeService dateTimeService) => {
+    return new {
         Greeting = greetingService.GetGreeting(name),
         ServerTime = dateTimeService.GetCurrentDateTime()
     };
@@ -54,7 +50,6 @@ app.MapGet("/greeting/{name}", (string name, IGreetingService greetingService, I
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
+record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary) {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }

@@ -3,8 +3,7 @@ namespace ConsoleHostExample.Services;
 /// <summary>
 /// Provides data processing functionality.
 /// </summary>
-public interface IDataProcessor
-{
+public interface IDataProcessor {
     /// <summary>
     /// Processes the input data asynchronously.
     /// </summary>

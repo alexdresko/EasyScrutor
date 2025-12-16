@@ -3,8 +3,7 @@ namespace MvcExample.Services;
 /// <summary>
 /// Provides message generation services.
 /// </summary>
-public interface IMessageService
-{
+public interface IMessageService {
     /// <summary>
     /// Gets a message string.
     /// </summary>

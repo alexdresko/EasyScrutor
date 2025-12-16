@@ -7,8 +7,7 @@ namespace ConsoleHostExample.Services;
 /// Collects and reports metrics with singleton lifetime.
 /// Auto-registered as Singleton - shared across the entire application.
 /// </summary>
-public class MetricsCollector : IMetricsCollector, ISingletonLifetime
-{
+public class MetricsCollector : IMetricsCollector, ISingletonLifetime {
     /// <summary>
     /// Thread-safe dictionary storing metric values.
     /// </summary>
@@ -23,8 +22,7 @@ public class MetricsCollector : IMetricsCollector, ISingletonLifetime
     /// Initializes a new instance of the <see cref="MetricsCollector"/> class.
     /// </summary>
     /// <param name="logger">The logger instance.</param>
-    public MetricsCollector(ILogger<MetricsCollector> logger)
-    {
+    public MetricsCollector(ILogger<MetricsCollector> logger) {
         _logger = logger;
     }
 
@@ -33,8 +31,7 @@ public class MetricsCollector : IMetricsCollector, ISingletonLifetime
     /// </summary>
     /// <param name="name">The name of the metric.</param>
     /// <param name="value">The metric value to record.</param>
-    public void RecordMetric(string name, int value)
-    {
+    public void RecordMetric(string name, int value) {
         _metrics.AddOrUpdate(name, value, (_, existing) => existing + value);
         _logger.LogDebug("Recorded metric {Name}: {Value}", name, value);
     }
@@ -42,11 +39,9 @@ public class MetricsCollector : IMetricsCollector, ISingletonLifetime
     /// <summary>
     /// Displays all collected metrics to the log.
     /// </summary>
-    public void DisplayMetrics()
-    {
+    public void DisplayMetrics() {
         _logger.LogInformation("=== Metrics Summary ===");
-        foreach (var metric in _metrics)
-        {
+        foreach (var metric in _metrics) {
             _logger.LogInformation("{Name}: {Value}", metric.Key, metric.Value);
         }
     }

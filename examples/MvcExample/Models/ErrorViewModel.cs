@@ -3,8 +3,7 @@ namespace MvcExample.Models;
 /// <summary>
 /// View model for displaying error information.
 /// </summary>
-public class ErrorViewModel
-{
+public class ErrorViewModel {
     /// <summary>
     /// Gets or sets the request identifier.
     /// </summary>

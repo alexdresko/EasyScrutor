@@ -5,8 +5,7 @@ namespace ConsoleHostExample;
 /// <summary>
 /// Background worker that demonstrates service usage with EasyScrutor.
 /// </summary>
-public class Worker : BackgroundService
-{
+public class Worker : BackgroundService {
     /// <summary>
     /// Logger instance for this class.
     /// </summary>
@@ -31,8 +30,7 @@ public class Worker : BackgroundService
     public Worker(
         ILogger<Worker> logger,
         IServiceProvider serviceProvider,
-        IMetricsCollector metricsCollector)
-    {
+        IMetricsCollector metricsCollector) {
         _logger = logger;
         _serviceProvider = serviceProvider;
         _metricsCollector = metricsCollector;
@@ -43,19 +41,16 @@ public class Worker : BackgroundService
     /// </summary>
     /// <param name="stoppingToken">Cancellation token to stop the worker.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         _logger.LogInformation("Worker started. Services auto-registered via EasyScrutor!");
 
         var iteration = 0;
-        while (!stoppingToken.IsCancellationRequested && iteration < 5)
-        {
+        while (!stoppingToken.IsCancellationRequested && iteration < 5) {
             iteration++;
             _logger.LogInformation("Worker iteration {Iteration} at: {Time}", iteration, DateTimeOffset.Now);
 
             // Create a scope for scoped services
-            using (var scope = _serviceProvider.CreateScope())
-            {
+            using (var scope = _serviceProvider.CreateScope()) {
                 var dataProcessor = scope.ServiceProvider.GetRequiredService<IDataProcessor>();
 
                 // Use the auto-registered scoped service

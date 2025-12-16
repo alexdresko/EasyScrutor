@@ -1,15 +1,14 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MvcExample.Models;
 using MvcExample.Services;
+using System.Diagnostics;
 
 namespace MvcExample.Controllers;
 
 /// <summary>
 /// Home controller for the MVC example application.
 /// </summary>
-public class HomeController : Controller
-{
+public class HomeController : Controller {
     /// <summary>
     /// The message service instance.
     /// </summary>
@@ -19,8 +18,7 @@ public class HomeController : Controller
     /// Initializes a new instance of the <see cref="HomeController"/> class.
     /// </summary>
     /// <param name="messageService">The message service.</param>
-    public HomeController(IMessageService messageService)
-    {
+    public HomeController(IMessageService messageService) {
         _messageService = messageService;
     }
 
@@ -28,8 +26,7 @@ public class HomeController : Controller
     /// Displays the home page with a message from the message service.
     /// </summary>
     /// <returns>The index view.</returns>
-    public IActionResult Index()
-    {
+    public IActionResult Index() {
         ViewBag.Message = _messageService.GetMessage();
         return View();
     }
@@ -38,8 +35,7 @@ public class HomeController : Controller
     /// Displays the privacy policy page.
     /// </summary>
     /// <returns>The privacy view.</returns>
-    public IActionResult Privacy()
-    {
+    public IActionResult Privacy() {
         return View();
     }
 
@@ -48,8 +44,7 @@ public class HomeController : Controller
     /// </summary>
     /// <returns>The error view with error details.</returns>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
+    public IActionResult Error() {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

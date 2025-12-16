@@ -3,8 +3,7 @@ namespace BlazorServerExample.Services;
 /// <summary>
 /// Provides counter functionality for tracking and incrementing a count value.
 /// </summary>
-public interface ICounterService
-{
+public interface ICounterService {
     /// <summary>
     /// Gets the current count value.
     /// </summary>

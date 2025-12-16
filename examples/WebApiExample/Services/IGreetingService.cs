@@ -3,8 +3,7 @@ namespace WebApiExample.Services;
 /// <summary>
 /// Provides greeting message services.
 /// </summary>
-public interface IGreetingService
-{
+public interface IGreetingService {
     /// <summary>
     /// Gets a personalized greeting message.
     /// </summary>

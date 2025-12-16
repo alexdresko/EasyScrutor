@@ -3,8 +3,7 @@ namespace ConsoleHostExample.Services;
 /// <summary>
 /// Provides metrics collection and reporting functionality.
 /// </summary>
-public interface IMetricsCollector
-{
+public interface IMetricsCollector {
     /// <summary>
     /// Records a metric value.
     /// </summary>

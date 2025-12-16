@@ -3,8 +3,7 @@ namespace BlazorServerExample.Data;
 /// <summary>
 /// Provides weather forecast data generation services.
 /// </summary>
-public class WeatherForecastService
-{
+public class WeatherForecastService {
     /// <summary>
     /// Array of possible weather condition summaries.
     /// </summary>
@@ -18,10 +17,8 @@ public class WeatherForecastService
     /// </summary>
     /// <param name="startDate">The starting date for the forecast.</param>
     /// <returns>An array of weather forecasts.</returns>
-    public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
-    {
-        return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
+    public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate) {
+        return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast {
             Date = startDate.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]

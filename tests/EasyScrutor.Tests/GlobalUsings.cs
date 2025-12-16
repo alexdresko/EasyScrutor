@@ -1,3 +1,3 @@
-global using NUnit.Framework;
-global using Microsoft.Extensions.DependencyInjection;
 global using EasyScrutor;
+global using Microsoft.Extensions.DependencyInjection;
+global using NUnit.Framework;

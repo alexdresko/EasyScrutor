@@ -3,8 +3,7 @@ namespace BlazorServerExample.Data;
 /// <summary>
 /// Represents a weather forecast for a specific date.
 /// </summary>
-public class WeatherForecast
-{
+public class WeatherForecast {
     /// <summary>
     /// Gets or sets the date of the forecast.
     /// </summary>
