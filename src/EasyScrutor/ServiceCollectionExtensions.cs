@@ -1,5 +1,4 @@
 using EasyScrutor;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Scrutor;
 using System;
 using System.Reflection;
@@ -47,37 +46,38 @@ public static class ServiceCollectionExtensions {
     /// <returns>The configured implementation type selector.</returns>
     private static IImplementationTypeSelector AddClassesFromInterfaces(this IImplementationTypeSelector selector) {
         //singleton
-        selector.AddClasses(classes => classes.AssignableTo<ISingletonLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsMatchingInterface()
-        .WithSingletonLifetime()
+        selector
+        .AddClasses(classes => classes.AssignableTo<ISingletonLifetime>(), true)
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsMatchingInterface()
+            .WithSingletonLifetime()
 
         .AddClasses(classes => classes.AssignableTo<ISelfSingletonLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsSelf()
-        .WithSingletonLifetime()
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsSelf()
+            .WithSingletonLifetime()
 
         //transient
         .AddClasses(classes => classes.AssignableTo<ITransientLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsMatchingInterface()
-        .WithTransientLifetime()
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsMatchingInterface()
+            .WithTransientLifetime()
 
         .AddClasses(classes => classes.AssignableTo<ISelfTransientLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsSelf()
-        .WithTransientLifetime()
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsSelf()
+            .WithTransientLifetime()
 
         //scoped
         .AddClasses(classes => classes.AssignableTo<IScopedLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsMatchingInterface()
-        .WithScopedLifetime()
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsMatchingInterface()
+            .WithScopedLifetime()
 
         .AddClasses(classes => classes.AssignableTo<ISelfScopedLifetime>(), true)
-        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-        .AsSelf()
-        .WithScopedLifetime();
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsSelf()
+            .WithScopedLifetime();
 
         return selector;
     }

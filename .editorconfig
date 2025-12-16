@@ -27,6 +27,9 @@ insert_final_newline = false
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = false
 
+# Remove unnecessary usings
+dotnet_diagnostic.IDE0005.severity = warning
+
 # this. and Me. preferences
 dotnet_style_qualification_for_event = false:silent
 dotnet_style_qualification_for_field = false:silent
