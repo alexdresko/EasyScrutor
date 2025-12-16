@@ -6,8 +6,17 @@ using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Provides extension methods for IServiceCollection to enable advanced dependency injection scanning.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Scans and registers services from all assemblies in the dependency context that implement lifetime marker interfaces.
+        /// Services are registered based on their implemented lifetime interfaces (ISingletonLifetime, ITransientLifetime, IScopedLifetime).
+        /// </summary>
+        /// <param name="services">The service collection to add services to.</param>
+        /// <returns>The service collection for chaining.</returns>
         public static IServiceCollection AddAdvancedDependencyInjection(this IServiceCollection services)
         {
             services.Scan(scan => scan
@@ -17,6 +26,13 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        /// <summary>
+        /// Scans and registers services from assemblies matching the predicate that implement lifetime marker interfaces.
+        /// Services are registered based on their implemented lifetime interfaces (ISingletonLifetime, ITransientLifetime, IScopedLifetime).
+        /// </summary>
+        /// <param name="services">The service collection to add services to.</param>
+        /// <param name="predicate">A predicate to filter which assemblies to scan.</param>
+        /// <returns>The service collection for chaining.</returns>
         public static IServiceCollection AddAdvancedDependencyInjection(this IServiceCollection services, Func<Assembly, bool> predicate)
         {
             services.Scan(scan => scan
@@ -26,6 +42,12 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        /// <summary>
+        /// Configures service registration based on lifetime marker interfaces.
+        /// Scans for classes implementing ISingletonLifetime, ITransientLifetime, IScopedLifetime, and their self-registration variants.
+        /// </summary>
+        /// <param name="selector">The implementation type selector to configure.</param>
+        /// <returns>The configured implementation type selector.</returns>
         private static IImplementationTypeSelector AddClassesFromInterfaces(this IImplementationTypeSelector selector)
         {
             //singleton

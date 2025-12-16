@@ -2,12 +2,32 @@ using ConsoleHostExample.Services;
 
 namespace ConsoleHostExample;
 
+/// <summary>
+/// Background worker that demonstrates service usage with EasyScrutor.
+/// </summary>
 public class Worker : BackgroundService
 {
+    /// <summary>
+    /// Logger instance for this class.
+    /// </summary>
     private readonly ILogger<Worker> _logger;
+    
+    /// <summary>
+    /// Service provider for creating scopes.
+    /// </summary>
     private readonly IServiceProvider _serviceProvider;
+    
+    /// <summary>
+    /// Metrics collector service.
+    /// </summary>
     private readonly IMetricsCollector _metricsCollector;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Worker"/> class.
+    /// </summary>
+    /// <param name="logger">The logger instance.</param>
+    /// <param name="serviceProvider">The service provider for creating scopes.</param>
+    /// <param name="metricsCollector">The metrics collector service.</param>
     public Worker(
         ILogger<Worker> logger,
         IServiceProvider serviceProvider,
@@ -18,6 +38,11 @@ public class Worker : BackgroundService
         _metricsCollector = metricsCollector;
     }
 
+    /// <summary>
+    /// Executes the background worker task.
+    /// </summary>
+    /// <param name="stoppingToken">Cancellation token to stop the worker.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Worker started. Services auto-registered via EasyScrutor!");
