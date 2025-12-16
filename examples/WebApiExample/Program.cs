@@ -18,9 +18,6 @@ if (app.Environment.IsDevelopment()) {
 
 app.UseHttpsRedirection();
 
-// Use the advanced dependency injection
-app.UseAdvancedDependencyInjection();
-
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

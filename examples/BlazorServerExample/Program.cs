@@ -25,9 +25,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Use the advanced dependency injection
-app.UseAdvancedDependencyInjection();
-
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 

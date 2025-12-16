@@ -15,9 +15,7 @@ The original project was created by [sefacan](https://github.com/sefacan) and pr
 ### Build Status
 | Build server    | Platform       | Status      |
 |-----------------|----------------|-------------|
-| Azure CI Pipelines  | All            |![](https://dev.azure.com/alexdresko/EasyScrutor/_apis/build/status/alexdresko.EasyScrutor?branchName=master) |
 | Github Actions  | All            |![](https://github.com/alexdresko/EasyScrutor/workflows/.NET%20Core%20CI/badge.svg) |
-| Travis CI       | Linux  |![](https://travis-ci.com/alexdresko/EasyScrutor.svg?branch=master) |
 
 ## Installation
 
@@ -37,19 +35,82 @@ dotnet add package EasyScrutor
 
 ## Usage
 
+EasyScrutor automatically discovers and registers your services by scanning for classes that implement lifetime marker interfaces.
+
+### Step 1: Mark your service classes
+
+Implement one of the lifetime marker interfaces on your service classes:
+- `IScopedLifetime` - Registers as Scoped
+- `ITransientLifetime` - Registers as Transient
+- `ISingletonLifetime` - Registers as Singleton
+- `ISelfScopedLifetime` - Registers as Scoped (self-registration, no interface)
+- `ISelfTransientLifetime` - Registers as Transient (self-registration, no interface)
+- `ISelfSingletonLifetime` - Registers as Singleton (self-registration, no interface)
+
 ```csharp
-public void ConfigureServices(IServiceCollection services)
+using EasyScrutor;
+
+public interface IDataService
 {
-    //add to the end of the method
-    services.AddAdvancedDependencyInjection();
+    Task<string> GetDataAsync();
 }
 
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+// This class will be automatically registered as Scoped
+public class DataService : IDataService, IScopedLifetime
 {
-    //add to the end of the method
-    app.UseAdvancedDependencyInjection();
+    public async Task<string> GetDataAsync()
+    {
+        return await Task.FromResult("Hello from DataService!");
+    }
 }
-
-//usage without constructor classes
-var service = ServiceLocator.Context.GetService<MyClass>();
 ```
+
+### Step 2: Register EasyScrutor in your application
+
+**ASP.NET Core:**
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Add EasyScrutor - automatically scans and registers services
+builder.Services.AddAdvancedDependencyInjection();
+
+var app = builder.Build();
+app.Run();
+```
+
+**Console/Worker Service:**
+
+```csharp
+var builder = Host.CreateApplicationBuilder(args);
+
+// Add EasyScrutor - automatically scans and registers services
+builder.Services.AddAdvancedDependencyInjection();
+
+var host = builder.Build();
+host.Run();
+```
+
+### Step 3: Use your services
+
+Services are injected automatically through constructor injection:
+
+```csharp
+public class MyController : ControllerBase
+{
+    private readonly IDataService _dataService;
+
+    public MyController(IDataService dataService)
+    {
+        _dataService = dataService;
+    }
+
+    public async Task<IActionResult> Get()
+    {
+        var data = await _dataService.GetDataAsync();
+        return Ok(data);
+    }
+}
+```
+
+That's it! No manual service registration needed - EasyScrutor handles it all for you.

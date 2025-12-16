@@ -20,9 +20,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Use the advanced dependency injection
-app.UseAdvancedDependencyInjection();
-
 app.MapStaticAssets();
 
 app.MapControllerRoute(
