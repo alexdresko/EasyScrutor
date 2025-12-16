@@ -150,17 +150,15 @@ public class ServiceLifecycleIntegrationTests {
         // Arrange
         var services = new ServiceCollection();
         services.AddAdvancedDependencyInjection();
-        var serviceProvider = services.BuildServiceProvider();
+        using (var serviceProvider = services.BuildServiceProvider())
+        {
+            // Act
+            var singleton = serviceProvider.GetService<ISingletonService>();
 
-        // Act
-        var singleton = serviceProvider.GetService<ISingletonService>();
-
-        // Dispose the service provider
-        serviceProvider.Dispose();
-
-        // Assert
-        Assert.That(singleton, Is.Not.Null, "Service should have been resolved before disposal");
-        // Note: We can't directly test disposal, but this ensures no exceptions are thrown
+            // Assert
+            Assert.That(singleton, Is.Not.Null, "Service should have been resolved before disposal");
+            // Note: We can't directly test disposal, but this ensures no exceptions are thrown
+        }
     }
 
     private static string ExtractGuid(string message, string prefix) {
