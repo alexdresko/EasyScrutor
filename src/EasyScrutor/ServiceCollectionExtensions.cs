@@ -1,5 +1,4 @@
 using EasyScrutor;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Scrutor;
 using System;
@@ -15,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             .FromDependencyContext(DependencyModel.DependencyContext.Default)
             .AddClassesFromInterfaces());
 
-            return services.AddCommonServices();
+            return services;
         }
 
         public static IServiceCollection AddAdvancedDependencyInjection(this IServiceCollection services, Func<Assembly, bool> predicate)
@@ -24,7 +23,7 @@ namespace Microsoft.Extensions.DependencyInjection
             .FromDependencyContext(DependencyModel.DependencyContext.Default, predicate)
             .AddClassesFromInterfaces());
 
-            return services.AddCommonServices();
+            return services;
         }
 
         private static IImplementationTypeSelector AddClassesFromInterfaces(this IImplementationTypeSelector selector)
@@ -63,16 +62,6 @@ namespace Microsoft.Extensions.DependencyInjection
             .WithScopedLifetime();
 
             return selector;
-        }
-
-        private static IServiceCollection AddCommonServices(this IServiceCollection services)
-        {
-            services.AddHttpContextAccessor();
-            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            services.TryAddSingleton<IDependencyContext, DependencyContext>();
-            services.TryAddSingleton(services);
-
-            return services;
         }
     }
 }
