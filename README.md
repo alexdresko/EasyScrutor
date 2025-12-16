@@ -114,3 +114,42 @@ public class MyController : ControllerBase
 ```
 
 That's it! No manual service registration needed - EasyScrutor handles it all for you.
+
+## Advanced Usage
+
+### Filtering Assemblies for Performance
+
+By default, `AddAdvancedDependencyInjection()` scans all assemblies in your application's dependency context. For better performance, especially in large applications, you can filter which assemblies to scan:
+
+```csharp
+builder.Services.AddAdvancedDependencyInjection(assembly =>
+{
+    // Only scan assemblies from your application, exclude framework assemblies
+    return !assembly.FullName?.StartsWith("Microsoft.", StringComparison.Ordinal) == true &&
+           !assembly.FullName?.StartsWith("System.", StringComparison.Ordinal) == true &&
+           !assembly.FullName?.StartsWith("netstandard", StringComparison.Ordinal) == true;
+});
+```
+
+**Or target specific assemblies:**
+
+```csharp
+// Only scan assemblies matching your application name
+builder.Services.AddAdvancedDependencyInjection(assembly =>
+    assembly.FullName?.StartsWith("MyCompany.MyApp", StringComparison.Ordinal) == true);
+```
+
+**Or exclude test/development assemblies in production:**
+
+```csharp
+builder.Services.AddAdvancedDependencyInjection(assembly =>
+{
+    var name = assembly.FullName ?? string.Empty;
+    return !name.Contains("Tests") &&
+           !name.Contains("Mock") &&
+           !name.StartsWith("Microsoft.") &&
+           !name.StartsWith("System.");
+});
+```
+
+This can significantly improve application startup time by reducing the number of assemblies scanned for service registration.
