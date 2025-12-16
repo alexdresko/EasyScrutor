@@ -150,8 +150,7 @@ public class ServiceLifecycleIntegrationTests {
         // Arrange
         var services = new ServiceCollection();
         services.AddAdvancedDependencyInjection();
-        using (var serviceProvider = services.BuildServiceProvider())
-        {
+        using (var serviceProvider = services.BuildServiceProvider()) {
             // Act
             var singleton = serviceProvider.GetService<ISingletonService>();
 
