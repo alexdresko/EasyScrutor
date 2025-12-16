@@ -53,12 +53,12 @@ if (-not (Test-Path $csprojPath)) {
 # Function to extract version from csproj
 function Get-CurrentVersion {
     param([string]$CsprojPath)
-    
+
     $content = Get-Content $CsprojPath -Raw
     if ($content -match '<Version>(\d+\.\d+\.\d+)</Version>') {
         return $matches[1]
     }
-    
+
     Write-Error "Could not find version in $CsprojPath"
     exit 1
 }
@@ -66,17 +66,17 @@ function Get-CurrentVersion {
 # Function to increment patch version
 function Get-NextVersion {
     param([string]$CurrentVersion)
-    
+
     $parts = $CurrentVersion.Split('.')
     if ($parts.Length -ne 3) {
         Write-Error "Version must be in format: Major.Minor.Patch"
         exit 1
     }
-    
+
     $major = [int]$parts[0]
     $minor = [int]$parts[1]
     $patch = [int]$parts[2]
-    
+
     return "$major.$minor.$($patch + 1)"
 }
 
@@ -86,7 +86,7 @@ function Set-CsprojVersion {
         [string]$CsprojPath,
         [string]$NewVersion
     )
-    
+
     $content = Get-Content $CsprojPath -Raw
     $newContent = $content -replace '<Version>\d+\.\d+\.\d+</Version>', "<Version>$NewVersion</Version>"
     Set-Content $CsprojPath -Value $newContent -NoNewline
@@ -109,7 +109,7 @@ Write-Host $suggestedVersion -ForegroundColor Green
 if (-not $Version) {
     Write-Host "`nEnter new version (press Enter for suggested version): " -NoNewline -ForegroundColor Cyan
     $userInput = Read-Host
-    
+
     if ([string]::IsNullOrWhiteSpace($userInput)) {
         $Version = $suggestedVersion
     } else {

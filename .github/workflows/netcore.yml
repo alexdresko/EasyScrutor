@@ -1,6 +1,6 @@
 name: .NET Core CI
 
-on: 
+on:
   push:
     branches: [ master, main, alex ]
   pull_request:
@@ -12,31 +12,31 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: | 
+        dotnet-version: |
           8.0.x
           9.0.x
           10.0.x
-        
+
     - name: Restore dependencies
       run: dotnet restore ./EasyScrutor.sln
-      
+
     - name: Build
       run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
-      
+
     - name: Test
       run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
-      
+
     - name: Pack
       run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj -c Release --no-build -o ./packages
-      
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
         path: ./packages/*.nupkg
-      
-      
+
+
