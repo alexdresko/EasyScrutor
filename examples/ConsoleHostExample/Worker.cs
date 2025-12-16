@@ -21,7 +21,7 @@ public class Worker : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Worker started. Services auto-registered via Scrutor.AspNetCore!");
-        
+
         var iteration = 0;
         while (!stoppingToken.IsCancellationRequested && iteration < 5)
         {
@@ -32,7 +32,7 @@ public class Worker : BackgroundService
             using (var scope = _serviceProvider.CreateScope())
             {
                 var dataProcessor = scope.ServiceProvider.GetRequiredService<IDataProcessor>();
-                
+
                 // Use the auto-registered scoped service
                 var result = await dataProcessor.ProcessDataAsync($"Data-{iteration}");
                 _logger.LogInformation("Result: {Result}", result);

@@ -27,7 +27,7 @@ A minimal Web API demonstrating:
 - Service injection in minimal API endpoints
 - Custom endpoint using injected services
 
-**Run:** `dotnet run --project WebApiExample`  
+**Run:** `dotnet run --project WebApiExample`
 **Test:** Navigate to `/greeting/YourName` to see auto-registered services in action
 
 ### 2. MvcExample
@@ -36,7 +36,7 @@ An MVC application showing:
 - Service injection in MVC controllers
 - Using services in views
 
-**Run:** `dotnet run --project MvcExample`  
+**Run:** `dotnet run --project MvcExample`
 **View:** Home page displays message from auto-registered service
 
 ### 3. BlazorServerExample
@@ -45,7 +45,7 @@ A Blazor Server app demonstrating:
 - Service injection in Blazor components
 - Shared state across users
 
-**Run:** `dotnet run --project BlazorServerExample`  
+**Run:** `dotnet run --project BlazorServerExample`
 **Try:** Counter page uses a singleton service shared across all sessions
 
 ### 4. ConsoleHostExample
@@ -55,7 +55,7 @@ A generic host worker service (console application) demonstrating:
 - Singleton metrics collector shared across the application
 - Scoped data processor
 
-**Run:** `dotnet run --project ConsoleHostExample`  
+**Run:** `dotnet run --project ConsoleHostExample`
 **See:** Console output showing auto-registered services in action
 
 ## Usage Pattern
@@ -115,7 +115,7 @@ host.Run();
 public class MyController : Controller
 {
     private readonly IMyService _myService;
-    
+
     public MyController(IMyService myService)
     {
         _myService = myService; // Automatically injected!
@@ -136,10 +136,10 @@ public class MyController : Controller
 
 ## Benefits
 
-✅ **Cleaner Code** - No more cluttered Program.cs with dozens of service registrations  
-✅ **Convention-Based** - Simply implement an interface to define the lifetime  
-✅ **Type-Safe** - Compile-time checked, no magic strings  
-✅ **Maintainable** - Services declare their own lifetime alongside their implementation  
+✅ **Cleaner Code** - No more cluttered Program.cs with dozens of service registrations
+✅ **Convention-Based** - Simply implement an interface to define the lifetime
+✅ **Type-Safe** - Compile-time checked, no magic strings
+✅ **Maintainable** - Services declare their own lifetime alongside their implementation
 ✅ **Flexible** - Can still manually register services when needed
 
 ## Building and Running
