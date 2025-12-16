@@ -1,0 +1,62 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on version tags like v1.0.0, v4.2.1, etc.
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
+    inputs:
+      version:
+        description: 'Version to release (optional, uses csproj version if not provided)'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Get full history for proper versioning
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore ./EasyScrutor.sln
+
+    - name: Verify code formatting
+      run: dotnet format ./EasyScrutor.sln --verify-no-changes --verbosity diagnostic
+
+    - name: Build
+      run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
+
+    - name: Pack NuGet package
+      run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj --configuration Release --no-build --output ./packages
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      env:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: ./packages/*.nupkg
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

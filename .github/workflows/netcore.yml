@@ -1,30 +1,45 @@
 name: .NET Core CI
 
-on: [push]
+on:
+  push:
+    branches: [ master, main, alex ]
+  pull_request:
+    branches: [ master, main ]
 
 jobs:
   build_and_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
-    - name: Setup .NET 5.0
-      uses: actions/setup-dotnet@v1
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 5.0.101
-  
-    - name: Setup .NET Core 3.1
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.403
-      if: matrix.os == 'ubuntu-latest'
-    - uses: actions/checkout@v1
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore ./EasyScrutor.sln
+
+    - name: Verify code formatting
+      run: dotnet format ./EasyScrutor.sln --verify-no-changes --verbosity diagnostic
+
     - name: Build
-      run: dotnet build ./Scrutor.AspNetCore.sln --configuration Release
+      run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
+
     - name: Pack
-      run: dotnet pack -c Release --no-build -o ./packages
-    - name: Push
-      run: dotnet nuget push ./packages/Scrutor.AspNetCore.*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://api.nuget.org/v3/index.json
-      
-      
+      run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj -c Release --no-build -o ./packages
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: ./packages/*.nupkg
+
+

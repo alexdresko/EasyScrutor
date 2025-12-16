@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <Description>Dependency Injection Helper Package For .Net Core Apps</Description>
+    <Version>0.0.1</Version>
+    <AssemblyName>EasyScrutor</AssemblyName>
+    <RootNamespace>EasyScrutor</RootNamespace>
+    <Copyright>2022 sefacan.net</Copyright>
+    <RepositoryUrl>https://github.com/alexdresko/EasyScrutor</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/alexdresko/EasyScrutor</PackageProjectUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Sefa Can</Authors>
+    <Company>sefacan.net</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Scrutor" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+</Project>
