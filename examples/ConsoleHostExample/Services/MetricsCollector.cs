@@ -13,7 +13,7 @@ public class MetricsCollector : IMetricsCollector, ISingletonLifetime
     /// Thread-safe dictionary storing metric values.
     /// </summary>
     private readonly ConcurrentDictionary<string, int> _metrics = new();
-    
+
     /// <summary>
     /// Logger instance for this class.
     /// </summary>

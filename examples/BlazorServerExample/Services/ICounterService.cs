@@ -10,7 +10,7 @@ public interface ICounterService
     /// </summary>
     /// <returns>The current count.</returns>
     int GetCount();
-    
+
     /// <summary>
     /// Increments the counter by one.
     /// </summary>

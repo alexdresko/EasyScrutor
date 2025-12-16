@@ -11,12 +11,12 @@ public class Worker : BackgroundService
     /// Logger instance for this class.
     /// </summary>
     private readonly ILogger<Worker> _logger;
-    
+
     /// <summary>
     /// Service provider for creating scopes.
     /// </summary>
     private readonly IServiceProvider _serviceProvider;
-    
+
     /// <summary>
     /// Metrics collector service.
     /// </summary>
