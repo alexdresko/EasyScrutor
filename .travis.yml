@@ -6,4 +6,4 @@ dist: xenial
 os: linux
 
 script:
-- dotnet build ./Scrutor.AspNetCore.sln --configuration Release
+- dotnet build ./EasyScrutor.sln --configuration Release

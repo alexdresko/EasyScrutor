@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-// Add Scrutor.AspNetCore - Automatically scans and registers services
+// Add EasyScrutor - Automatically scans and registers services
 builder.Services.AddAdvancedDependencyInjection();
 
 var app = builder.Build();

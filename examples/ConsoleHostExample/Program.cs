@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-// Add Scrutor.AspNetCore - Automatically scans and registers all services
+// Add EasyScrutor - Automatically scans and registers all services
 // This will find and register IDataProcessor and IMetricsCollector without manual configuration
 builder.Services.AddAdvancedDependencyInjection();
 

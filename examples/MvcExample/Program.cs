@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Add Scrutor.AspNetCore - Automatically scans and registers services
+// Add EasyScrutor - Automatically scans and registers services
 builder.Services.AddAdvancedDependencyInjection();
 
 var app = builder.Build();

@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 
 namespace MvcExample.Services;
 
@@ -7,6 +7,6 @@ public class MessageService : IMessageService, ITransientLifetime
 {
     public string GetMessage()
     {
-        return "This service was automatically registered using Scrutor.AspNetCore with Transient lifetime!";
+        return "This service was automatically registered using EasyScrutor with Transient lifetime!";
     }
 }

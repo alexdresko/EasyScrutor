@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
-namespace Scrutor.AspNetCore
+namespace EasyScrutor
 {
     public class DependencyContext : IDependencyContext
     {

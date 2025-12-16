@@ -7,7 +7,7 @@ jobs:
     name: CodeQL Analysis
     runs-on: ubuntu-latest
     env:
-      SOLUTION_PATH: ./Scrutor.AspNetCore.sln
+      SOLUTION_PATH: ./EasyScrutor.sln
     steps:
       - name: Checkout repository
         id: checkout_repo

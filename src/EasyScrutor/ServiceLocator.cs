@@ -1,6 +1,6 @@
 using System;
 
-namespace Scrutor.AspNetCore
+namespace EasyScrutor
 {
     public class ServiceLocator
     {

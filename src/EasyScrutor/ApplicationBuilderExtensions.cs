@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Builder

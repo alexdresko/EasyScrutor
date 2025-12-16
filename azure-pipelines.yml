@@ -18,9 +18,9 @@ jobs:
     inputs:
       packageType: 'sdk'
       version: $(netCoreSdkVersion)
-  - script: dotnet build ./Scrutor.AspNetCore.sln
+  - script: dotnet build ./EasyScrutor.sln
     displayName: 'dotnet build'
-  - script: dotnet test ./Scrutor.AspNetCore.sln
+  - script: dotnet test ./EasyScrutor.sln
     displayName: 'run tests'
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/*.trx'
@@ -37,9 +37,9 @@ jobs:
     inputs:
       packageType: 'sdk'
       version: $(netCoreSdkVersion)
-  - script: dotnet build ./Scrutor.AspNetCore.sln
+  - script: dotnet build ./EasyScrutor.sln
     displayName: 'dotnet build'
-  - script: dotnet test ./Scrutor.AspNetCore.sln
+  - script: dotnet test ./EasyScrutor.sln
     displayName: 'run tests'
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/*.trx'
@@ -56,9 +56,9 @@ jobs:
     inputs:
       packageType: 'sdk'
       version: $(netCoreSdkVersion)
-  - script: dotnet build ./Scrutor.AspNetCore.sln
+  - script: dotnet build ./EasyScrutor.sln
     displayName: 'dotnet build'
-  - script: dotnet test ./Scrutor.AspNetCore.sln
+  - script: dotnet test ./EasyScrutor.sln
     displayName: 'run tests'
   - task: PublishTestResults@2
     displayName: 'Publish Test Results **/*.trx'

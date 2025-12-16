@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 using System.Collections.Concurrent;
 
 namespace ConsoleHostExample.Services;

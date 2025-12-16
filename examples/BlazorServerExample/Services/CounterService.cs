@@ -1,8 +1,8 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 
 namespace BlazorServerExample.Services;
 
-// Auto-registered as Singleton using Scrutor.AspNetCore
+// Auto-registered as Singleton using EasyScrutor
 public class CounterService : ICounterService, ISingletonLifetime
 {
     private int _count = 0;

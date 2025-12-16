@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Scrutor;

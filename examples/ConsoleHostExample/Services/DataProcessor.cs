@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 
 namespace ConsoleHostExample.Services;
 

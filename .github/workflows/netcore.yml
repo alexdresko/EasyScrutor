@@ -21,10 +21,10 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
     - uses: actions/checkout@v1
     - name: Build
-      run: dotnet build ./Scrutor.AspNetCore.sln --configuration Release
+      run: dotnet build ./EasyScrutor.sln --configuration Release
     - name: Pack
       run: dotnet pack -c Release --no-build -o ./packages
     - name: Push
-      run: dotnet nuget push ./packages/Scrutor.AspNetCore.*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./packages/EasyScrutor.*.nupkg --skip-duplicate --api-key ${{secrets.NUGET_TOKEN}} --source https://api.nuget.org/v3/index.json
       
       

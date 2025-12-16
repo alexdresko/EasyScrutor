@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Scrutor.AspNetCore\Scrutor.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\EasyScrutor\EasyScrutor.csproj" />
   </ItemGroup>
 
 </Project>

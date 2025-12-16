@@ -1,4 +1,4 @@
-namespace Scrutor.AspNetCore
+namespace EasyScrutor
 {
     public interface ITransientLifetime
     {

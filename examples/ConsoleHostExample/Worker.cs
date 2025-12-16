@@ -20,7 +20,7 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation("Worker started. Services auto-registered via Scrutor.AspNetCore!");
+        _logger.LogInformation("Worker started. Services auto-registered via EasyScrutor!");
 
         var iteration = 0;
         while (!stoppingToken.IsCancellationRequested && iteration < 5)

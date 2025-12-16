@@ -1,4 +1,4 @@
-using Scrutor.AspNetCore;
+using EasyScrutor;
 
 namespace WebApiExample.Services;
 
@@ -7,6 +7,6 @@ public class GreetingService : IGreetingService, IScopedLifetime
 {
     public string GetGreeting(string name)
     {
-        return $"Hello, {name}! This service was auto-registered using Scrutor.AspNetCore.";
+        return $"Hello, {name}! This service was auto-registered using EasyScrutor.";
     }
 }

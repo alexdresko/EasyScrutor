@@ -1,10 +1,10 @@
-# Scrutor.AspNetCore Examples
+# EasyScrutor Examples
 
-This directory contains example projects demonstrating how to use **Scrutor.AspNetCore** for automatic dependency injection registration in different ASP.NET Core application types.
+This directory contains example projects demonstrating how to use **EasyScrutor** for automatic dependency injection registration in different ASP.NET Core application types.
 
-## What is Scrutor.AspNetCore?
+## What is EasyScrutor?
 
-Scrutor.AspNetCore is a dependency injection helper package that automatically scans and registers services based on marker interfaces, eliminating the need for manual service registration in `Program.cs`.
+EasyScrutor is a dependency injection helper package that automatically scans and registers services based on marker interfaces, eliminating the need for manual service registration in `Program.cs`.
 
 ## How It Works
 
@@ -85,7 +85,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add all your other services...
 builder.Services.AddControllers();
 
-// Add Scrutor.AspNetCore - This scans and registers all services
+// Add EasyScrutor - This scans and registers all services
 builder.Services.AddAdvancedDependencyInjection();
 
 var app = builder.Build();
@@ -100,7 +100,7 @@ app.Run();
 ```csharp
 var builder = Host.CreateApplicationBuilder(args);
 
-// Add Scrutor.AspNetCore - This scans and registers all services
+// Add EasyScrutor - This scans and registers all services
 builder.Services.AddAdvancedDependencyInjection();
 
 builder.Services.AddHostedService<Worker>();
@@ -159,4 +159,4 @@ dotnet run --project ConsoleHostExample
 
 ## Learn More
 
-For more information, visit the [Scrutor.AspNetCore GitHub repository](https://github.com/sefacan/Scrutor.AspNetCore).
+For more information, visit the [EasyScrutor GitHub repository](https://github.com/alexdresko/EasyScrutor).
