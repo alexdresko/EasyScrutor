@@ -1,3 +1,4 @@
+using System.Linq;
 namespace EasyScrutor.Tests;
 
 [TestFixture]
@@ -105,11 +106,9 @@ public class LifetimeInterfaceTests {
 
         // Act & Assert
         foreach (var type1 in lifetimeTypes) {
-            foreach (var type2 in lifetimeTypes) {
-                if (type1 != type2) {
-                    Assert.That(type1.IsAssignableFrom(type2), Is.False,
-                        $"{type2.Name} should not inherit from {type1.Name}");
-                }
+            foreach (var type2 in lifetimeTypes.Where(type2 => type2 != type1)) {
+                Assert.That(type1.IsAssignableFrom(type2), Is.False,
+                    $"{type2.Name} should not inherit from {type1.Name}");
             }
         }
     }
