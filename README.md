@@ -153,3 +153,5 @@ builder.Services.AddAdvancedDependencyInjection(assembly =>
 ```
 
 This can significantly improve application startup time by reducing the number of assemblies scanned for service registration.
+
+Hello
