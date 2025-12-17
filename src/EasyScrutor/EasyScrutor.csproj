@@ -1,25 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-    <Description>Dependency Injection Helper Package For .Net Core Apps</Description>
+
+    <!-- Package Metadata -->
+    <Description>Convention-based dependency injection for .NET using Scrutor. Automatically register services by implementing marker interfaces (IScopedLifetime, ITransientLifetime, ISingletonLifetime) - no manual registration needed. Works with ASP.NET Core, Blazor, Worker Services, and any .NET app using DI.</Description>
+    <PackageTags>dependency-injection;di;scrutor;convention-based;ioc;aspnetcore;dotnet;blazor;worker-service;automatic-registration</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>See https://github.com/alexdresko/EasyScrutor/releases for detailed release notes</PackageReleaseNotes>
+
+    <!-- Version & Authors -->
     <Version>0.0.4</Version>
+    <Authors>Alex Dresko</Authors>
+    <Copyright>Copyright (c) 2025 Alex Dresko</Copyright>
+
+    <!-- Repository Info -->
+    <RepositoryUrl>https://github.com/alexdresko/EasyScrutor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/alexdresko/EasyScrutor</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+
+    <!-- Assembly Info -->
     <AssemblyName>EasyScrutor</AssemblyName>
     <RootNamespace>EasyScrutor</RootNamespace>
-    <Copyright>2022 sefacan.net</Copyright>
-    <RepositoryUrl>https://github.com/alexdresko/EasyScrutor</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/alexdresko/EasyScrutor</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Authors>Sefa Can</Authors>
-    <Company>sefacan.net</Company>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- SourceLink Support -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- Build Quality -->
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Scrutor" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 </Project>
