@@ -12,10 +12,62 @@ permissions:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
-          # Use manifest-based releases for multi-package repos
-          # This reads .release-please-manifest.json and release-please-config.json
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  publish-nuget:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          9.0.x
+          10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore ./EasyScrutor.sln
+
+    - name: Verify code formatting
+      run: dotnet format ./EasyScrutor.sln --verify-no-changes --verbosity diagnostic
+
+    - name: Build
+      run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
+
+    - name: Pack NuGet package
+      run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj --configuration Release --no-build --output ./packages
+
+    - name: Publish to NuGet.org
+      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      env:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+
+    - name: Upload package to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ needs.release-please.outputs.tag_name }}
+        files: ./packages/*.nupkg
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
