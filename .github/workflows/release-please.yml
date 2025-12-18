@@ -1,0 +1,21 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          # Use manifest-based releases for multi-package repos
+          # This reads .release-please-manifest.json and release-please-config.json
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
