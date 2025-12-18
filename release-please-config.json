@@ -1,0 +1,18 @@
+{
+  "packages": {
+    ".": {
+      "package-name": "EasyScrutor",
+      "changelog-path": "CHANGELOG.md",
+      "release-type": "simple",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "extra-files": [
+        {
+          "type": "xml",
+          "path": "src/EasyScrutor/EasyScrutor.csproj",
+          "xpath": "/Project/PropertyGroup/Version"
+        }
+      ]
+    }
+  }
+}
