@@ -12,6 +12,19 @@ EasyScrutor is a modernized fork of the original [Scrutor.AspNetCore](https://gi
 
 The original project was created by [sefacan](https://github.com/sefacan) and provided a simple, convention-based approach to dependency injection. This fork maintains that simplicity while ensuring compatibility with modern .NET versions.
 
+**Major improvements in Scrutor dependency (v4.2.0 -> v7.0.0):**
+- **Keyed service registration support** - Leverage .NET 8's keyed DI for more advanced scenarios
+- **Interface filtering for `AsSelfWithInterfaces`** - Better control over which interfaces to register
+- **Security fix** - Resolved System.Text.Json vulnerability through DependencyModel update
+- **Performance improvements** - Optimized decoration performance for applications with many services
+- **Generic type support** - Better handling of generic ServiceDescriptor from C# 11+
+- **.NET 6 and .NET 8 support** - Full compatibility with modern .NET versions
+- **Bug fixes**:
+  - Fixed multiple decoration layers for generic types
+  - Made DecoratedType and IsDecorated method public for extensibility
+  - Improved error handling when scanning assemblies
+  - Fixed generic type creation exceptions
+
 ### Build Status
 | Build server    | Platform       | Status      |
 |-----------------|----------------|-------------|
@@ -180,5 +193,36 @@ builder.Services.AddAdvancedDependencyInjection(assembly =>
 ```
 
 This can significantly improve application startup time by reducing the number of assemblies scanned for service registration.
+
+## Examples
+
+See [examples/README.md](examples/README.md) for runnable sample apps (Web API, MVC, Blazor Server, and a console/worker host).
+
+## Contributing
+
+We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) guide to get started.
+
+## Changelog
+
+Major changes made since forking from [Scrutor.AspNetCore](https://github.com/sefacan/Scrutor.AspNetCore):
+
+- **Project renamed** from Scrutor.AspNetCore to **EasyScrutor** to better reflect its purpose and remove misleading framework-specific naming
+- **Removed service locator pattern** implementation (anti-pattern) and all ASP.NET Core-specific dependencies, making the library compatible with any .NET application using dependency injection
+- **Multi-framework support**: Added support for .NET 8.0, 9.0, and 10.0 target frameworks
+- **Complete test coverage**: Added comprehensive NUnit test suite with 43 tests across 6 test classes covering all lifetime marker interfaces
+- **Example applications**: Created working examples for ASP.NET Core (Blazor Server, MVC, Web API) and console/worker services demonstrating the library works with any .NET application
+- **Advanced filtering documentation**: Added comprehensive documentation on assembly filtering for performance optimization
+- **Developer experience improvements**:
+  - Added .editorconfig and dotnet format support
+  - Added C# Copilot instructions
+  - XML documentation comments for all public APIs
+  - Created package.json for easy task automation
+- **CI/CD improvements**: Updated GitHub Actions workflows to latest versions, added Release Please automation for semantic versioning
+- **Code quality improvements**: Fixed code scanning alerts (proper LINQ usage, resource disposal, variable assignments)
+- **Code formatting standardization**: Configured consistent line endings and added formatting verification to CI workflows
+- **Community health files**: Added CODE_OF_CONDUCT.md and CONTRIBUTING.md
+- **Enhanced NuGet package**: Added package icon, README inclusion, and improved metadata with automatic release notes
+- **Build quality improvements**: Enabled Source Link for debugging support, deterministic builds for reproducibility, and proper compiler flags
+- Maintained backward compatibility with all six lifetime marker interfaces (IScopedLifetime, ITransientLifetime, ISingletonLifetime, and their Self* variants)
 
 Hello
