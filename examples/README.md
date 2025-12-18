@@ -161,3 +161,18 @@ dotnet run --project ConsoleHostExample
 ## Learn More
 
 For more information, visit the [EasyScrutor GitHub repository](https://github.com/alexdresko/EasyScrutor).
+
+## Troubleshooting
+
+### Services Not Being Registered?
+
+1. **Check the namespace**: Services must be in a namespace that's scanned by `AddAdvancedDependencyInjection()`
+2. **Verify interface implementation**: Ensure your service implements one of the lifetime marker interfaces
+3. **Public classes only**: Services must be public to be discovered
+4. **Check assembly**: By default, the entry assembly is scanned
+
+### Need Help?
+
+- Check the [examples](https://github.com/alexdresko/EasyScrutor/tree/master/examples) for working code
+- Open an [issue](https://github.com/alexdresko/EasyScrutor/issues) if you find a bug
+- Start a [discussion](https://github.com/alexdresko/EasyScrutor/discussions) for questions
