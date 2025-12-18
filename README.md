@@ -17,6 +17,31 @@ The original project was created by [sefacan](https://github.com/sefacan) and pr
 |-----------------|----------------|-------------|
 | Github Actions  | All            |![](https://github.com/alexdresko/EasyScrutor/workflows/.NET%20Core%20CI/badge.svg) |
 
+## Quick Start
+
+Get started with EasyScrutor in just 3 steps:
+
+**1. Install the package:**
+```bash
+dotnet add package EasyScrutor
+```
+
+**2. Mark your services with a lifetime interface:**
+```csharp
+public interface IMyService { string GetMessage(); }
+public class MyService : IMyService, IScopedLifetime 
+{ 
+    public string GetMessage() => "Hello from EasyScrutor!"; 
+}
+```
+
+**3. Register in Program.cs:**
+```csharp
+builder.Services.AddAdvancedDependencyInjection();
+```
+
+That's it! Your services are now automatically registered and ready to inject anywhere in your application.
+
 ## Installation
 
 Install the [EasyScrutor NuGet Package](https://www.nuget.org/packages/EasyScrutor).
