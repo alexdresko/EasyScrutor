@@ -9,7 +9,7 @@
     <PackageReleaseNotes>See https://github.com/alexdresko/EasyScrutor/releases for detailed release notes</PackageReleaseNotes>
 
     <!-- Version & Authors -->
-    <Version>0.0.6</Version>
+    <Version>0.0.7</Version>
     <Authors>Alex Dresko</Authors>
     <Copyright>Copyright (c) 2025 Alex Dresko</Copyright>
 
@@ -38,13 +38,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\" />
-    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="icon.png" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Scrutor" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Scrutor" Version="7.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
 </Project>
