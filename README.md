@@ -67,13 +67,15 @@ public class DataService : IDataService, IScopedLifetime
 
 ### Step 2: Register EasyScrutor in your application
 
+> **⚠️ BREAKING CHANGE**: The method signature has been updated. Please use `AddEasyScrutor()` instead of `AddAdvancedDependencyInjection()` for clearer, more intuitive naming.
+
 **ASP.NET Core:**
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
 // Add EasyScrutor - automatically scans and registers services
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 var app = builder.Build();
 app.Run();
@@ -85,7 +87,7 @@ app.Run();
 var builder = Host.CreateApplicationBuilder(args);
 
 // Add EasyScrutor - automatically scans and registers services
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 var host = builder.Build();
 host.Run();
