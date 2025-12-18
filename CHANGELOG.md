@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.0](https://github.com/alexdresko/EasyScrutor/compare/EasyScrutor-v0.0.7...EasyScrutor-v0.1.0) (2025-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* The main registration method has been renamed from AddAdvancedDependencyInjection() to AddEasyScrutor() for better clarity and discoverability. Users must update their code to use the new method name.
+
+### Features
+
+* rename AddAdvancedDependencyInjection to AddEasyScrutor ([#9](https://github.com/alexdresko/EasyScrutor/issues/9)) ([6eb18fe](https://github.com/alexdresko/EasyScrutor/commit/6eb18fe1d28d3c022e24ef707f2c69ab163e508c))
+
 ## [0.0.7](https://github.com/alexdresko/EasyScrutor/compare/EasyScrutor-v0.0.6...EasyScrutor-v0.0.7) (2025-12-18)
 
 
