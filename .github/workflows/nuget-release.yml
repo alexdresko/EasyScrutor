@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*.*.*'  # Triggers on version tags like v1.0.0, v4.2.1, etc.
+      - 'EasyScrutor-v*.*.*'  # Also support Release Please format with package prefix
   workflow_dispatch:  # Allows manual triggering from GitHub UI
     inputs:
       version:
