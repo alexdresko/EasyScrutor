@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/alexdresko/EasyScrutor/compare/v0.2.0...v0.2.1) (2025-12-18)
+
+
+### Features
+
+* add Quick Start section to README for easier onboarding ([#15](https://github.com/alexdresko/EasyScrutor/issues/15)) ([6d3e551](https://github.com/alexdresko/EasyScrutor/commit/6d3e5510c3f546730d227074bf1874f0ca3aaa57))
+
 ## [0.2.0](https://github.com/alexdresko/EasyScrutor/compare/v0.1.0...v0.2.0) (2025-12-18)
 
 
