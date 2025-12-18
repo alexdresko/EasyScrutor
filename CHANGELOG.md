@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/alexdresko/EasyScrutor/compare/v0.2.1...v0.2.2) (2025-12-18)
+
+
+### Bug Fixes
+
+* combine Release Please and NuGet publish into single workflow ([#17](https://github.com/alexdresko/EasyScrutor/issues/17)) ([45e70b9](https://github.com/alexdresko/EasyScrutor/commit/45e70b9a49904f46c415f2c7e42ad7b26e49851b))
+
 ## [0.2.1](https://github.com/alexdresko/EasyScrutor/compare/v0.2.0...v0.2.1) (2025-12-18)
 
 
