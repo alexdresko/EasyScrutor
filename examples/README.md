@@ -136,11 +136,12 @@ public class MyController : Controller
 
 ## Benefits
 
-✅ **Cleaner Code** - No more cluttered Program.cs with dozens of service registrations
-✅ **Convention-Based** - Simply implement an interface to define the lifetime
-✅ **Type-Safe** - Compile-time checked, no magic strings
-✅ **Maintainable** - Services declare their own lifetime alongside their implementation
-✅ **Flexible** - Can still manually register services when needed
+✅ **Cleaner Code** - No more cluttered Program.cs with dozens of service registrations  
+✅ **Convention-Based** - Simply implement an interface to define the lifetime  
+✅ **Type-Safe** - Compile-time checked, no magic strings  
+✅ **Maintainable** - Services declare their own lifetime alongside their implementation  
+✅ **Flexible** - Can still manually register services when needed  
+✅ **Discoverable** - Easy to find all services by searching for lifetime interfaces
 
 ## Building and Running
 
