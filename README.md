@@ -55,7 +55,7 @@ public class MyService : IMyService, IScopedLifetime
 
 **3. Register in Program.cs:**
 ```csharp
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 ```
 
 That's it! Your services are now automatically registered and ready to inject anywhere in your application.
@@ -164,10 +164,10 @@ That's it! No manual service registration needed - EasyScrutor handles it all fo
 
 ### Filtering Assemblies for Performance
 
-By default, `AddAdvancedDependencyInjection()` scans all assemblies in your application's dependency context. For better performance, especially in large applications, you can filter which assemblies to scan:
+By default, `AddEasyScrutor()` scans all assemblies in your application's dependency context. For better performance, especially in large applications, you can filter which assemblies to scan:
 
 ```csharp
-builder.Services.AddAdvancedDependencyInjection(assembly =>
+builder.Services.AddEasyScrutor(assembly =>
 {
     // Only scan assemblies from your application, exclude framework assemblies
     return !assembly.FullName?.StartsWith("Microsoft.", StringComparison.Ordinal) == true &&
@@ -180,14 +180,14 @@ builder.Services.AddAdvancedDependencyInjection(assembly =>
 
 ```csharp
 // Only scan assemblies matching your application name
-builder.Services.AddAdvancedDependencyInjection(assembly =>
+builder.Services.AddEasyScrutor(assembly =>
     assembly.FullName?.StartsWith("MyCompany.MyApp", StringComparison.Ordinal) == true);
 ```
 
 **Or exclude test/development assemblies in production:**
 
 ```csharp
-builder.Services.AddAdvancedDependencyInjection(assembly =>
+builder.Services.AddEasyScrutor(assembly =>
 {
     var name = assembly.FullName ?? string.Empty;
     return !name.Contains("Tests") &&
