@@ -28,7 +28,11 @@ The original project was created by [sefacan](https://github.com/sefacan) and pr
 ### Build Status
 | Build server    | Platform       | Status      |
 |-----------------|----------------|-------------|
-| Github Actions  | All            |![](https://github.com/alexdresko/EasyScrutor/workflows/.NET%20Core%20CI/badge.svg) |
+| Github Actions  | All            | ![Build Status](https://github.com/alexdresko/EasyScrutor/workflows/.NET%20Core%20CI/badge.svg) |
+| NuGet           | Package        | [![NuGet](https://img.shields.io/nuget/v/EasyScrutor.svg)](https://www.nuget.org/packages/EasyScrutor/) |
+| NuGet           | Downloads      | [![NuGet Downloads](https://img.shields.io/nuget/dt/EasyScrutor.svg)](https://www.nuget.org/packages/EasyScrutor/) |
+| GitHub          | Release        | [![GitHub Release](https://img.shields.io/github/release/alexdresko/EasyScrutor.svg)](https://github.com/alexdresko/EasyScrutor/releases) |
+| License         | MIT            | [![License](https://img.shields.io/github/license/alexdresko/EasyScrutor.svg)](LICENSE) |
 
 ## Quick Start
 
@@ -42,9 +46,9 @@ dotnet add package EasyScrutor
 **2. Mark your services with a lifetime interface:**
 ```csharp
 public interface IMyService { string GetMessage(); }
-public class MyService : IMyService, IScopedLifetime 
-{ 
-    public string GetMessage() => "Hello from EasyScrutor!"; 
+public class MyService : IMyService, IScopedLifetime
+{
+    public string GetMessage() => "Hello from EasyScrutor!";
 }
 ```
 
