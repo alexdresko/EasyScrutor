@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 // Add EasyScrutor - Automatically scans and registers services based on lifetime interfaces
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 var app = builder.Build();
 
