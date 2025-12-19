@@ -47,7 +47,8 @@ public static class ServiceCollectionExtensions {
     /// <returns>The service collection for chaining.</returns>
     public static IServiceCollection AddEasyScrutorForAssembliesStartingWith(this IServiceCollection services, string prefix) {
         services.Scan(scan => scan
-        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => assembly.FullName?.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) == true)
+        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => 
+            assembly.FullName != null && assembly.FullName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
         .AddClassesFromInterfaces());
 
         return services;
@@ -62,7 +63,8 @@ public static class ServiceCollectionExtensions {
     /// <returns>The service collection for chaining.</returns>
     public static IServiceCollection AddEasyScrutorForAssembliesContaining(this IServiceCollection services, string text) {
         services.Scan(scan => scan
-        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => assembly.FullName?.Contains(text, StringComparison.OrdinalIgnoreCase) == true)
+        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => 
+            assembly.FullName != null && assembly.FullName.Contains(text, StringComparison.OrdinalIgnoreCase))
         .AddClassesFromInterfaces());
 
         return services;
