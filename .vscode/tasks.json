@@ -107,6 +107,79 @@
       },
       "problemMatcher": "$msCompile",
       "group": "build"
+    },
+    {
+      "label": "Test with Coverage",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/EasyScrutor.sln",
+        "--collect:XPlat Code Coverage",
+        "--settings",
+        "coverlet.runsettings"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": "$msCompile",
+      "group": "test"
+    },
+    {
+      "label": "Coverage: Generate Report",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-Command",
+        "$report = Get-ChildItem -Path tests/EasyScrutor.Tests/TestResults -Recurse -Filter 'coverage.cobertura.xml' | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; reportgenerator -reports:$report -targetdir:coverage-report -reporttypes:Html"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Coverage: Open Report",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-Command",
+        "Start-Process coverage-report/index.html"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "Coverage: Full Report",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-Command",
+        "dotnet test --collect:'XPlat Code Coverage' --settings coverlet.runsettings; $report = Get-ChildItem -Path tests/EasyScrutor.Tests/TestResults -Recurse -Filter 'coverage.cobertura.xml' | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; reportgenerator -reports:$report -targetdir:coverage-report -reporttypes:Html; Start-Process coverage-report/index.html"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false
+      },
+      "problemMatcher": [],
+      "group": "test"
     }
   ]
 }
