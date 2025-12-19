@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/alexdresko/EasyScrutor/compare/v0.2.2...v0.2.3) (2025-12-19)
+
+
+### Bug Fixes
+
+* improve Release Please workflow and update documentation ([#19](https://github.com/alexdresko/EasyScrutor/issues/19)) ([a27d1b7](https://github.com/alexdresko/EasyScrutor/commit/a27d1b7ed87c7d7f499c9e41990f2047e0101454))
+
 ## [0.2.2](https://github.com/alexdresko/EasyScrutor/compare/v0.2.1...v0.2.2) (2025-12-18)
 
 
