@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/alexdresko/EasyScrutor/compare/v0.2.4...v0.3.0) (2025-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Renamed AddAdvancedDependencyInjection method to AddEasyScrutor for better alignment with package name. Also added new assembly filtering methods AddEasyScrutorForAssembliesStartingWith and AddEasyScrutorForAssembliesContaining.
+
+### Features
+
+* add devcontainer configuration for .NET 10 development ([#23](https://github.com/alexdresko/EasyScrutor/issues/23)) ([8058238](https://github.com/alexdresko/EasyScrutor/commit/80582386397283daaa85afee24ecebcee4cce0ab))
+* rename AddAdvancedDependencyInjection to AddEasyScrutor and add assembly filters ([#26](https://github.com/alexdresko/EasyScrutor/issues/26)) ([1d93e1b](https://github.com/alexdresko/EasyScrutor/commit/1d93e1bec37fced327a246c1b0cc3a05fd80cb08))
+
 ## [0.2.4](https://github.com/alexdresko/EasyScrutor/compare/v0.2.3...v0.2.4) (2025-12-19)
 
 
