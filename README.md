@@ -29,6 +29,7 @@ The original project was created by [sefacan](https://github.com/sefacan) and pr
 | Build server    | Platform       | Status      |
 |-----------------|----------------|-------------|
 | Github Actions  | All            | ![Build Status](https://github.com/alexdresko/EasyScrutor/workflows/.NET%20Core%20CI/badge.svg) |
+| Code Coverage   | All            | [![codecov](https://codecov.io/gh/alexdresko/EasyScrutor/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdresko/EasyScrutor) |
 | NuGet           | Package        | [![NuGet](https://img.shields.io/nuget/v/EasyScrutor.svg)](https://www.nuget.org/packages/EasyScrutor/) |
 | NuGet           | Downloads      | [![NuGet Downloads](https://img.shields.io/nuget/dt/EasyScrutor.svg)](https://www.nuget.org/packages/EasyScrutor/) |
 | GitHub          | Release        | [![GitHub Release](https://img.shields.io/github/release/alexdresko/EasyScrutor.svg)](https://github.com/alexdresko/EasyScrutor/releases) |

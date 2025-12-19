@@ -8,6 +8,15 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+  <!-- Code Coverage Configuration -->
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover,cobertura</CoverletOutputFormat>
+    <CoverletOutput>./TestResults/</CoverletOutput>
+    <Exclude>[*.Tests]*</Exclude>
+    <ExcludeByAttribute>Obsolete,GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="NUnit" Version="4.3.0" />
