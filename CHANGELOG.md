@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/alexdresko/EasyScrutor/compare/v0.2.3...v0.2.4) (2025-12-19)
+
+
+### Features
+
+* add Codecov integration for comprehensive test coverage reporting ([314c69d](https://github.com/alexdresko/EasyScrutor/commit/314c69dfae8e0fdcb12147585deca85645886d17))
+
 ## [0.2.3](https://github.com/alexdresko/EasyScrutor/compare/v0.2.2...v0.2.3) (2025-12-19)
 
 
