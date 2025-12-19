@@ -641,3 +641,34 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/csharp,aspnetcore,visualstudio,visualstudiocode
 
 [Bb]undles/
+coverage-report/class.js
+coverage-report/EasyScrutor_ServiceCollectionExtensions.html
+coverage-report/icon_cog_dark.svg
+coverage-report/icon_cog.svg
+coverage-report/icon_cube_dark.svg
+coverage-report/icon_cube.svg
+coverage-report/icon_fork_dark.svg
+coverage-report/icon_fork.svg
+coverage-report/icon_info-circled_dark.svg
+coverage-report/icon_info-circled.svg
+coverage-report/icon_minus_dark.svg
+coverage-report/icon_minus.svg
+coverage-report/icon_plus_dark.svg
+coverage-report/icon_plus.svg
+coverage-report/icon_search-minus_dark.svg
+coverage-report/icon_search-minus.svg
+coverage-report/icon_search-plus_dark.svg
+coverage-report/icon_search-plus.svg
+coverage-report/icon_sponsor.svg
+coverage-report/icon_star_dark.svg
+coverage-report/icon_star.svg
+coverage-report/icon_up-dir_active.svg
+coverage-report/icon_up-dir.svg
+coverage-report/icon_up-down-dir_dark.svg
+coverage-report/icon_up-down-dir.svg
+coverage-report/icon_wrench_dark.svg
+coverage-report/icon_wrench.svg
+coverage-report/index.htm
+coverage-report/index.html
+coverage-report/main.js
+coverage-report/report.css

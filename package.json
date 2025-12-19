@@ -8,7 +8,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "dotnet test",
+    "test:coverage": "dotnet test --collect:\"XPlat Code Coverage\" --settings coverlet.runsettings",
+    "coverage:report": "pwsh -Command \"if (!(Get-Command reportgenerator -ErrorAction SilentlyContinue)) { Write-Host 'Installing reportgenerator...' -ForegroundColor Yellow; dotnet tool install --global dotnet-reportgenerator-globaltool }; $report = Get-ChildItem -Path tests/EasyScrutor.Tests/TestResults -Recurse -Filter 'coverage.cobertura.xml' | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; if ($report) { reportgenerator -reports:$report -targetdir:coverage-report -reporttypes:Html; Write-Host 'Report: coverage-report/index.html' -ForegroundColor Green } else { Write-Host 'Run npm run test:coverage first' -ForegroundColor Red }\"",
+    "coverage:open": "pwsh -Command \"Start-Process coverage-report/index.html\"",
+    "coverage": "npm run test:coverage && npm run coverage:report && npm run coverage:open",
     "format": "dotnet format EasyScrutor.sln"
   },
   "keywords": [],
