@@ -16,7 +16,7 @@ builder.Services.AddSingleton<IAnotherService, AnotherService>();
 
 You simply:
 1. Implement marker interfaces on your services (`IScopedLifetime`, `ISingletonLifetime`, `ITransientLifetime`)
-2. Call `AddAdvancedDependencyInjection()` once
+2. Call `AddEasyScrutor()` once
 3. All services are automatically discovered and registered!
 
 ## Available Examples
@@ -86,12 +86,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Add EasyScrutor - This scans and registers all services
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 var app = builder.Build();
-
-// Use advanced dependency injection
-app.UseAdvancedDependencyInjection();
 
 app.Run();
 ```
@@ -101,7 +98,7 @@ app.Run();
 var builder = Host.CreateApplicationBuilder(args);
 
 // Add EasyScrutor - This scans and registers all services
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 builder.Services.AddHostedService<Worker>();
 
@@ -166,7 +163,7 @@ For more information, visit the [EasyScrutor GitHub repository](https://github.c
 
 ### Services Not Being Registered?
 
-1. **Check the namespace**: Services must be in a namespace that's scanned by `AddAdvancedDependencyInjection()`
+1. **Check the namespace**: Services must be in a namespace that's scanned by `AddEasyScrutor()`
 2. **Verify interface implementation**: Ensure your service implements one of the lifetime marker interfaces
 3. **Public classes only**: Services must be public to be discovered
 4. **Check assembly**: By default, the entry assembly is scanned
