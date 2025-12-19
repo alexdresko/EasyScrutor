@@ -6,12 +6,12 @@ namespace EasyScrutor.Tests;
 [TestFixture]
 public class AdvancedDependencyInjectionTests {
     [Test]
-    public void AddAdvancedDependencyInjection_WithoutPredicate_ShouldRegisterAllServices() {
+    public void AddEasyScrutor_WithoutPredicate_ShouldRegisterAllServices() {
         // Arrange
         var services = new ServiceCollection();
 
         // Act
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Assert
@@ -24,13 +24,13 @@ public class AdvancedDependencyInjectionTests {
     }
 
     [Test]
-    public void AddAdvancedDependencyInjection_WithPredicate_ShouldOnlyRegisterMatchingAssemblies() {
+    public void AddEasyScrutor_WithPredicate_ShouldOnlyRegisterMatchingAssemblies() {
         // Arrange
         var services = new ServiceCollection();
         var testAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 
         // Act
-        services.AddAdvancedDependencyInjection(assembly =>
+        services.AddEasyScrutor(assembly =>
             assembly.FullName != null && assembly.FullName.Contains(testAssemblyName!));
         var serviceProvider = services.BuildServiceProvider();
 
@@ -41,12 +41,12 @@ public class AdvancedDependencyInjectionTests {
     }
 
     [Test]
-    public void AddAdvancedDependencyInjection_WithExcludingPredicate_ShouldNotRegisterFilteredAssemblies() {
+    public void AddEasyScrutor_WithExcludingPredicate_ShouldNotRegisterFilteredAssemblies() {
         // Arrange
         var services = new ServiceCollection();
 
         // Act - Exclude assemblies containing "NonExistent"
-        services.AddAdvancedDependencyInjection(assembly =>
+        services.AddEasyScrutor(assembly =>
             assembly.FullName != null && !assembly.FullName.Contains("NonExistent"));
         var serviceProvider = services.BuildServiceProvider();
 
@@ -55,13 +55,13 @@ public class AdvancedDependencyInjectionTests {
     }
 
     [Test]
-    public void AddAdvancedDependencyInjection_CalledMultipleTimes_ShouldSkipDuplicates() {
+    public void AddEasyScrutor_CalledMultipleTimes_ShouldSkipDuplicates() {
         // Arrange
         var services = new ServiceCollection();
 
         // Act
-        services.AddAdvancedDependencyInjection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
+        services.AddEasyScrutor();
 
         // Assert - Should only have one registration due to Skip strategy
         var singletonServices = services.Where(s => s.ServiceType == typeof(ISingletonService)).ToList();
@@ -74,7 +74,7 @@ public class AdvancedDependencyInjectionTests {
         var services = new ServiceCollection();
 
         // Act
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
 
         // Try to add a manual registration - it should be skipped due to RegistrationStrategy.Skip
         services.AddSingleton<ISingletonService, SingletonService>();
@@ -89,7 +89,7 @@ public class AdvancedDependencyInjectionTests {
     public void ComplexService_WithDependencies_ShouldResolveCorrectly() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -110,7 +110,7 @@ public class AdvancedDependencyInjectionTests {
         var services = new ServiceCollection();
 
         // Act
-        var result = services.AddAdvancedDependencyInjection();
+        var result = services.AddEasyScrutor();
 
         // Assert
         Assert.That(result, Is.SameAs(services), "Should return the same ServiceCollection for method chaining");
@@ -120,7 +120,7 @@ public class AdvancedDependencyInjectionTests {
     public void AllLifetimeInterfaces_ShouldBeRegistered() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act & Assert - Verify all 6 lifetime interfaces are working
@@ -138,7 +138,7 @@ public class AdvancedDependencyInjectionTests {
     public void MultipleImplementations_ShouldRegisterFirst() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -154,7 +154,7 @@ public class AdvancedDependencyInjectionTests {
     public void AbstractBaseClass_ShouldNotBeRegistered() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
 
         // Act
         var abstractRegistrations = services.Where(s => s.ImplementationType == typeof(BaseService)).ToList();
@@ -167,7 +167,7 @@ public class AdvancedDependencyInjectionTests {
     public void ConcreteClassFromAbstract_ShouldBeRegistered() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
