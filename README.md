@@ -226,7 +226,7 @@ Major changes made since forking from [Scrutor.AspNetCore](https://github.com/se
 - **Code formatting standardization**: Configured consistent line endings and added formatting verification to CI workflows
 - **Community health files**: Added CODE_OF_CONDUCT.md and CONTRIBUTING.md
 - **Enhanced NuGet package**: Added package icon, README inclusion, and improved metadata with automatic release notes
-- **Build quality improvements**: Enabled Source Link for debugging support, deterministic builds for reproducibility, and proper compiler flags
+- **Build quality improvements**: Enabled Source Link (allows developers to step into the library source code during debugging), deterministic builds (ensures identical binaries across different machines for security and verification), embedded debugging symbols, and proper compiler flags for optimal builds and diagnostics
 - Maintained backward compatibility with all six lifetime marker interfaces (IScopedLifetime, ITransientLifetime, ISingletonLifetime, and their Self* variants)
 
 Hello
