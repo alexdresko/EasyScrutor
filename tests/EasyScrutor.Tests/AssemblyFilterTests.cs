@@ -71,7 +71,6 @@ public class AssemblyFilterTests {
     public void AddEasyScrutorForAssembliesContaining_MatchingText_ShouldRegisterServices() {
         // Arrange
         var services = new ServiceCollection();
-        var testAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
         var containingText = "Scrutor"; // Should be part of the assembly name
 
         // Act
