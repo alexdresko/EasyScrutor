@@ -1,0 +1,44 @@
+{
+  "name": "EasyScrutor .NET 10 Development",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:1-10.0-noble",
+
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "latest"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "editorconfig.editorconfig",
+        "github.vscode-pull-request-github",
+        "davidanson.vscode-markdownlint",
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "EasyScrutor.sln",
+        "omnisharp.useModernNet": true,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": "explicit",
+          "source.organizeImports": "explicit"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "dotnet restore && dotnet build",
+
+  "forwardPorts": [5000, 5001],
+
+  "remoteUser": "vscode"
+}
