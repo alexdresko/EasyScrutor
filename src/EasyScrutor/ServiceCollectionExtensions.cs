@@ -15,7 +15,7 @@ public static class ServiceCollectionExtensions {
     /// </summary>
     /// <param name="services">The service collection to add services to.</param>
     /// <returns>The service collection for chaining.</returns>
-    public static IServiceCollection AddAdvancedDependencyInjection(this IServiceCollection services) {
+    public static IServiceCollection AddEasyScrutor(this IServiceCollection services) {
         services.Scan(scan => scan
         .FromDependencyContext(DependencyModel.DependencyContext.Default)
         .AddClassesFromInterfaces());
@@ -30,9 +30,39 @@ public static class ServiceCollectionExtensions {
     /// <param name="services">The service collection to add services to.</param>
     /// <param name="predicate">A predicate to filter which assemblies to scan.</param>
     /// <returns>The service collection for chaining.</returns>
-    public static IServiceCollection AddAdvancedDependencyInjection(this IServiceCollection services, Func<Assembly, bool> predicate) {
+    public static IServiceCollection AddEasyScrutor(this IServiceCollection services, Func<Assembly, bool> predicate) {
         services.Scan(scan => scan
         .FromDependencyContext(DependencyModel.DependencyContext.Default, predicate)
+        .AddClassesFromInterfaces());
+
+        return services;
+    }
+
+    /// <summary>
+    /// Scans and registers services from assemblies whose names start with the specified prefix.
+    /// Services are registered based on their implemented lifetime interfaces (ISingletonLifetime, ITransientLifetime, IScopedLifetime).
+    /// </summary>
+    /// <param name="services">The service collection to add services to.</param>
+    /// <param name="prefix">The prefix that assembly names must start with.</param>
+    /// <returns>The service collection for chaining.</returns>
+    public static IServiceCollection AddEasyScrutorForAssembliesStartingWith(this IServiceCollection services, string prefix) {
+        services.Scan(scan => scan
+        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => assembly.FullName?.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) == true)
+        .AddClassesFromInterfaces());
+
+        return services;
+    }
+
+    /// <summary>
+    /// Scans and registers services from assemblies whose names contain the specified text.
+    /// Services are registered based on their implemented lifetime interfaces (ISingletonLifetime, ITransientLifetime, IScopedLifetime).
+    /// </summary>
+    /// <param name="services">The service collection to add services to.</param>
+    /// <param name="text">The text that assembly names must contain.</param>
+    /// <returns>The service collection for chaining.</returns>
+    public static IServiceCollection AddEasyScrutorForAssembliesContaining(this IServiceCollection services, string text) {
+        services.Scan(scan => scan
+        .FromDependencyContext(DependencyModel.DependencyContext.Default, assembly => assembly.FullName?.Contains(text, StringComparison.OrdinalIgnoreCase) == true)
         .AddClassesFromInterfaces());
 
         return services;
