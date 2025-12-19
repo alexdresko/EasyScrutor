@@ -208,25 +208,4 @@ We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) gui
 
 ## Changelog
 
-Major changes made since forking from [Scrutor.AspNetCore](https://github.com/sefacan/Scrutor.AspNetCore):
-
-- **Project renamed** from Scrutor.AspNetCore to **EasyScrutor** to better reflect its purpose and remove misleading framework-specific naming
-- **Removed service locator pattern** implementation (anti-pattern) and all ASP.NET Core-specific dependencies, making the library compatible with any .NET application using dependency injection
-- **Multi-framework support**: Added support for .NET 8.0, 9.0, and 10.0 target frameworks
-- **Complete test coverage**: Added comprehensive NUnit test suite with 43 tests across 6 test classes covering all lifetime marker interfaces
-- **Example applications**: Created working examples for ASP.NET Core (Blazor Server, MVC, Web API) and console/worker services demonstrating the library works with any .NET application
-- **Advanced filtering documentation**: Added comprehensive documentation on assembly filtering for performance optimization
-- **Developer experience improvements**:
-  - Added .editorconfig and dotnet format support
-  - Added C# Copilot instructions
-  - XML documentation comments for all public APIs
-  - Created package.json for easy task automation
-- **CI/CD improvements**: Updated GitHub Actions workflows to latest versions, added Release Please automation for semantic versioning
-- **Code quality improvements**: Fixed code scanning alerts (proper LINQ usage, resource disposal, variable assignments)
-- **Code formatting standardization**: Configured consistent line endings and added formatting verification to CI workflows
-- **Community health files**: Added CODE_OF_CONDUCT.md and CONTRIBUTING.md
-- **Enhanced NuGet package**: Added package icon, README inclusion, and improved metadata with automatic release notes
-- **Build quality improvements**: Enabled Source Link (allows developers to step into the library source code during debugging), deterministic builds (ensures identical binaries across different machines for security and verification), embedded debugging symbols, and proper compiler flags for optimal builds and diagnostics
-- Maintained backward compatibility with all six lifetime marker interfaces (IScopedLifetime, ITransientLifetime, ISingletonLifetime, and their Self* variants)
-
-Hello
+See [CHANGELOG.md](CHANGELOG.md) for the complete version history and detailed list of changes since forking from [Scrutor.AspNetCore](https://github.com/sefacan/Scrutor.AspNetCore).
