@@ -31,7 +31,14 @@ jobs:
       run: dotnet build ./EasyScrutor.sln --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
+      run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./TestResults
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        files: ./TestResults/**/coverage.cobertura.xml
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Pack
       run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj -c Release --no-build -o ./packages
