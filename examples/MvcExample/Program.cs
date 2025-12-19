@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add EasyScrutor - Automatically scans and registers services
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 
 var app = builder.Build();
 

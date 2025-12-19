@@ -8,7 +8,7 @@ public class ServiceLifecycleIntegrationTests {
     public void MixedLifetimes_ShouldWorkTogetherCorrectly() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -60,7 +60,7 @@ public class ServiceLifecycleIntegrationTests {
     public void ComplexService_ShouldReceiveCorrectDependencies() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -95,7 +95,7 @@ public class ServiceLifecycleIntegrationTests {
     public void SelfRegisteredServices_ShouldOnlyBeAvailableAsSelf() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -113,7 +113,7 @@ public class ServiceLifecycleIntegrationTests {
     public void InterfaceRegisteredServices_ShouldBeAvailableViaInterface() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -131,7 +131,7 @@ public class ServiceLifecycleIntegrationTests {
     public void InterfaceRegisteredServices_ShouldNotBeAvailableAsConcreteType() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         var serviceProvider = services.BuildServiceProvider();
 
         // Act
@@ -149,7 +149,7 @@ public class ServiceLifecycleIntegrationTests {
     public void ServiceProvider_Dispose_ShouldDisposeDisposableServices() {
         // Arrange
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         using (var serviceProvider = services.BuildServiceProvider()) {
             // Act
             var singleton = serviceProvider.GetService<ISingletonService>();

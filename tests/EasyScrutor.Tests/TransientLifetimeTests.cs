@@ -9,7 +9,7 @@ public class TransientLifetimeTests {
     [SetUp]
     public void Setup() {
         var services = new ServiceCollection();
-        services.AddAdvancedDependencyInjection();
+        services.AddEasyScrutor();
         _serviceProvider = services.BuildServiceProvider();
     }
 
