@@ -15,6 +15,7 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
+      body: ${{ steps.release.outputs.body }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -57,7 +58,14 @@ jobs:
       run: dotnet test ./EasyScrutor.sln --configuration Release --no-build --verbosity normal
 
     - name: Pack NuGet package
-      run: dotnet pack ./src/EasyScrutor/EasyScrutor.csproj --configuration Release --no-build --output ./packages
+      run: |
+        # Extract release notes from CHANGELOG for this version
+        RELEASE_NOTES="${{ needs.release-please.outputs.body }}"
+        dotnet pack ./src/EasyScrutor/EasyScrutor.csproj \
+          --configuration Release \
+          --no-build \
+          --output ./packages \
+          /p:PackageReleaseNotes="$RELEASE_NOTES"
 
     - name: Publish to NuGet.org
       run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
