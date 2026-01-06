@@ -24,7 +24,7 @@ public class MyService : IMyService, IScopedLifetime { }
 **2. Add to your application:**
 
 ```csharp
-builder.Services.AddAdvancedDependencyInjection();
+builder.Services.AddEasyScrutor();
 ```
 
 **3. Use your services:**
