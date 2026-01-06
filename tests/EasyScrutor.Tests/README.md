@@ -26,7 +26,7 @@ This test project provides full coverage of EasyScrutor's functionality, testing
    - Tests nested scope behavior
    - Tests both interface-based and self-registration patterns
 
-4. **AdvancedDependencyInjectionTests.cs** - Tests for `AddAdvancedDependencyInjection` methods
+4. **AdvancedDependencyInjectionTests.cs** - Tests for `AddEasyScrutor` methods
    - Tests registration without predicates
    - Tests registration with assembly predicates
    - Validates registration strategy (Skip)
