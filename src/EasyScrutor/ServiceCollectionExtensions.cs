@@ -71,6 +71,21 @@ public static class ServiceCollectionExtensions {
     }
 
     /// <summary>
+    /// Scans and registers services from the calling assembly that implement lifetime marker interfaces.
+    /// Services are registered based on their implemented lifetime interfaces (ISingletonLifetime, ITransientLifetime, IScopedLifetime).
+    /// </summary>
+    /// <param name="services">The service collection to add services to.</param>
+    /// <returns>The service collection for chaining.</returns>
+    public static IServiceCollection AddEasyScrutorForThisAssembly(this IServiceCollection services) {
+        var callingAssembly = Assembly.GetCallingAssembly();
+        services.Scan(scan => scan
+        .FromAssemblies(callingAssembly)
+        .AddClassesFromInterfaces());
+
+        return services;
+    }
+
+    /// <summary>
     /// Configures service registration based on lifetime marker interfaces.
     /// Scans for classes implementing ISingletonLifetime, ITransientLifetime, IScopedLifetime, and their self-registration variants.
     /// </summary>
