@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/alexdresko/EasyScrutor/compare/v0.3.0...v0.3.1) (2026-01-06)
+
+
+### Features
+
+* add AddEasyScrutorForThisAssembly extension method ([#28](https://github.com/alexdresko/EasyScrutor/issues/28)) ([d8603f3](https://github.com/alexdresko/EasyScrutor/commit/d8603f34923bf985bcd2b198fd8774286f74c191))
+
 ## [0.3.0](https://github.com/alexdresko/EasyScrutor/compare/v0.2.4...v0.3.0) (2025-12-19)
 
 
